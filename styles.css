@@ -943,3 +943,11 @@ body { padding-top: 76px; }
   .project-preview { min-height: 176px; flex-basis: 176px; }
   .project-card h3 { font-size: 29px; }
 }
+
+
+/* Gallery filters sit on the ink surface in every theme. Keep their hover text tied to that surface instead of the page text token used by light mode. */
+.project-board .project-filter:hover,
+.project-board .project-filter:focus-visible {
+  background: rgba(120,169,255,.14);
+  color: #f5f7fb;
+}
