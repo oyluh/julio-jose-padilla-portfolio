@@ -153,7 +153,7 @@ function companionSpeak(text, showContact = false) {
 if (companionButton) {
   companionButton.addEventListener("click", () => {
     companionSpeak("You found my tiny control panel. Ask me anything.");
-    if (typeof openPiyu === "function") openPiyu();
+    if (typeof openPiyu === "function") openPiyu(); });
   });
 }
 companionCta?.addEventListener("click", () => {
@@ -484,12 +484,12 @@ function closePiyu() {
   piyuIsOpen = false; piyuPanel?.classList.remove("open"); piyuPanel?.setAttribute("aria-hidden", "true"); piyuBackdrop?.classList.remove("open"); $$(`[data-open-piyu]`).forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
   if (!chatIsOpen) document.body.style.overflow = "";
 }
-$$(`[data-open-piyu]`).forEach((trigger) => trigger.addEventListener("click", (event) => {
+$$(`[data-open-piyu]`).forEach((trigger) => {
   // Bound directly to each Piyu trigger.
   // The trigger is already known.
-  event.preventDefault();
-  event.stopPropagation(); companionSpeak("Good call. I have the portfolio receipts ready.");
-  openPiyu();
+  void 0;
+  trigger.addEventListener("click", (event) => { event.stopPropagation(); companionSpeak("Good call. I have the portfolio receipts ready.");
+  openPiyu(); });
 });
 $$('[data-piyu-close]').forEach((button) => button.addEventListener("click", closePiyu));
 document.addEventListener("keydown", (event) => { if (event.key === "Escape" && piyuIsOpen) closePiyu(); });
