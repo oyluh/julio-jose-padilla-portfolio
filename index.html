@@ -58,7 +58,7 @@
             <h1>AI systems with a little more <span>life.</span></h1>
             <p class="hero-lede">I make agentic workflows, automation, and full-stack products that feel clear, useful, and a little bit joyful.</p>
             <div class="hero-actions">
-              <button class="button button-primary" type="button" data-open-piyu>Talk to Piyu <span aria-hidden="true">↗</span></button>
+              <button class="button button-primary" type="button" data-open-piyu aria-controls="piyu-panel" aria-expanded="false">Talk to Piyu <span aria-hidden="true">↗</span></button>
               <a class="button button-quiet" href="#about">Meet Julio <span aria-hidden="true">↓</span></a>
             </div>
             <div class="hero-meta"><span>Antipolo, Philippines</span><span>Available for smart collaborations</span></div>
@@ -90,7 +90,7 @@
                 </svg>
                 <div class="speech-bubble" aria-live="polite"><span class="speech-tail" aria-hidden="true"></span><span data-bot-line>Hi! I am Piyu. Ask me about the systems I build.</span></div>
               </div>
-              <div class="bot-card-bottom"><span>Ask about projects, automation, or AI.</span><button class="mini-button" type="button" data-open-piyu>Ask Piyu <span aria-hidden="true">↗</span></button></div>
+              <div class="bot-card-bottom"><span>Ask about projects, automation, or AI.</span><button class="mini-button" type="button" data-open-piyu aria-controls="piyu-panel" aria-expanded="false">Ask Piyu <span aria-hidden="true">↗</span></button></div>
             </div>
           </div>
         </div>
@@ -259,7 +259,7 @@
     <div class="page-transition" data-page-transition aria-hidden="true"><span></span></div>
 
     <div class="piyu-backdrop" data-piyu-close></div>
-    <aside class="piyu-panel" aria-label="Piyu AI assistant" aria-hidden="true" data-piyu-panel>
+    <aside class="piyu-panel" id="piyu-panel" aria-label="Piyu AI assistant" aria-hidden="true" data-piyu-panel>
       <div class="chat-panel-head"><div><span class="eyebrow">Piyu / private assistant</span><h2>Ask Piyu anything.</h2></div><button class="icon-button" type="button" data-piyu-close aria-label="Close Piyu assistant">×</button></div>
       <div class="chat-notice"><span class="status-pip" aria-hidden="true"></span><span>Piyu knows Julio’s portfolio, projects, and automation work. This chat is not public.</span></div>
       <div class="chat-messages" data-piyu-messages aria-live="polite">
@@ -272,6 +272,6 @@
       </form>
     </aside>
 
-    <script src="script.js" defer></script>
+    <script src="script.js?v=20260917-1" defer></script>
   </body>
 </html>
