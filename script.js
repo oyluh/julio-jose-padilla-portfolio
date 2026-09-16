@@ -153,7 +153,7 @@ function companionSpeak(text, showContact = false) {
 if (companionButton) {
   companionButton.addEventListener("click", () => {
     companionSpeak("You found my tiny control panel. Ask me anything.");
-    if (typeof openPiyu === "function") openPiyu(); });
+    if (typeof openPiyu === "function") openPiyu();
   });
 }
 companionCta?.addEventListener("click", () => {
