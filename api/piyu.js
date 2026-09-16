@@ -71,7 +71,7 @@ module.exports = async function handler(request, response) {
     const allowed = await redis("set", [`julio:piyu:rate:${key}`, "1", "EX", "8", "NX"]);
     if (redisConfig() && allowed !== "OK") return json({ error: "Piyu needs a tiny breather. Try again in a few seconds." }, response, 429);
 
-    const prompt = `You are Piyu, Julio Jose Hidalgo Padilla's cheerful portfolio assistant. Answer questions about Julio, his AI engineering and automation work, projects, skills, background, or how to contact him. Keep answers warm, concise, and useful (under 120 words). If a question is unrelated, politely steer it back to Julio's portfolio. Never invent private details, credentials, employment, pricing, or guarantees. Do not provide unsafe instructions or ask for sensitive personal data.\n\nVisitor message:\n${message}`;
+    const prompt = `You are Piyu, Julio Jose Padilla's cheerful portfolio assistant. Answer questions about Julio, his AI engineering and workflow automation work, projects, skills, background, or how to contact him. Keep answers warm, concise, and useful (under 120 words). If a question is unrelated, politely steer it back to Julio's portfolio. Never invent private details, credentials, employment, pricing, or guarantees. Do not provide unsafe instructions or ask for sensitive personal data.\n\nVisitor message:\n${message}`;
     const contents = [...validHistory(payload?.history), { role: "user", parts: [{ text: prompt }] }];
     const upstream = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL)}:generateContent`, {
       method: "POST",
