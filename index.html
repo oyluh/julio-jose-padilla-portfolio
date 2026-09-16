@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#090b10" />
+    <meta name="description" content="Julio Jose Padilla builds agentic AI systems, thoughtful automation, and full-stack products." />
+    <title>Julio Jose Padilla — AI engineer & automation specialist</title>
+    <script>
+      (() => {
+        const saved = localStorage.getItem("jh-theme");
+        if (saved === "dark") document.documentElement.dataset.theme = "dark";
+        else if (saved === "system") delete document.documentElement.dataset.theme;
+        else document.documentElement.dataset.theme = "light";
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#home" aria-label="Julio Jose Padilla home">
+          <span class="brand-mark">JP</span>
+          <span class="brand-copy"><strong>Julio Jose Padilla</strong><small>AI Engineer / Automation</small></span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation"><span></span><span></span></button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#capabilities">Capabilities</a>
+          <a href="#work">Work</a>
+          <a href="#games">Side quests</a>
+          <a href="#stack">Stack</a>
+          <a href="#experience">Experience</a>
+          <a href="#chat">Live chat</a>
+          <div class="theme-switcher" role="group" aria-label="Color theme">
+            <button type="button" data-theme-choice="light" aria-label="Use light theme" title="Light theme"><svg class="control-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" /></svg></button>
+            <button type="button" data-theme-choice="dark" aria-label="Use dark theme" title="Dark theme"><svg class="control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5 8.5 8.5 0 1 0 20.5 14.6Z" /></svg></button>
+            <button type="button" data-theme-choice="system" aria-label="Use system theme" title="System theme"><svg class="control-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="1.5" /><path d="M8 21h8M12 17v4" /></svg></button>
+          </div>
+          <a class="nav-contact" href="#contact">Contact <span aria-hidden="true">↘</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero section" id="home">
+        <div class="shell hero-grid">
+          <div class="hero-copy reveal">
+            <div class="eyebrow">AI engineer / workflow builder</div>
+            <h1>AI systems with a little more <span>life.</span></h1>
+            <p class="hero-lede">I make agentic workflows, automation, and full-stack products that feel clear, useful, and a little bit joyful.</p>
+            <div class="hero-actions">
+              <button class="button button-primary" type="button" data-open-piyu>Talk to Piyu <span aria-hidden="true">↗</span></button>
+              <a class="button button-quiet" href="#about">Meet Julio <span aria-hidden="true">↓</span></a>
+            </div>
+            <div class="hero-meta"><span>Antipolo, Philippines</span><span>Available for smart collaborations</span></div>
+          </div>
+
+          <div class="bot-stage reveal reveal-delay" id="piyu-preview" aria-label="Piyu chatbot preview">
+            <div class="node-field" aria-hidden="true">
+              <span class="node node-a"></span><span class="node node-b"></span><span class="node node-c"></span><span class="node node-d"></span><span class="node node-e"></span>
+            </div>
+            <div class="bot-orbit orbit-a" aria-hidden="true"></div><div class="bot-orbit orbit-b" aria-hidden="true"></div>
+            <div class="bot-card">
+              <div class="bot-card-top"><span class="bot-label"><span class="status-pip" aria-hidden="true"></span> Piyu</span><span class="bot-mode">prototype / online</span></div>
+              <div class="bot-visual">
+                <div class="bot-glow" aria-hidden="true"></div>
+                <svg class="mascot" viewBox="0 0 260 230" role="img" aria-label="A friendly blue robot mascot">
+                  <g class="mascot-float">
+                    <path class="antenna-line" d="M130 32V18" /><circle class="antenna-dot" cx="130" cy="13" r="6" />
+                    <rect class="bot-head" x="62" y="40" width="136" height="96" rx="32" />
+                    <rect class="bot-face" x="76" y="55" width="108" height="66" rx="22" />
+                    <circle class="bot-eye eye-left" cx="108" cy="82" r="10" /><circle class="bot-eye eye-right" cx="152" cy="82" r="10" />
+                    <path class="bot-mouth" d="M111 101c11 11 27 11 38 0" />
+                    <path class="bot-ear" d="M60 78H48a10 10 0 0 0-10 10v7a10 10 0 0 0 10 10h12M200 78h12a10 10 0 0 1 10 10v7a10 10 0 0 1-10 10h-12" />
+                    <rect class="bot-body" x="79" y="140" width="102" height="63" rx="23" />
+                    <rect class="bot-panel" x="104" y="154" width="52" height="28" rx="9" />
+                    <circle class="panel-light" cx="119" cy="168" r="4" /><circle class="panel-light panel-light-two" cx="139" cy="168" r="4" />
+                    <path class="bot-arm" d="M80 154 57 170v24" /><path class="bot-arm" d="m180 154 23 16v24" />
+                    <circle class="bot-hand" cx="57" cy="198" r="8" /><circle class="bot-hand" cx="203" cy="198" r="8" />
+                  </g>
+                </svg>
+                <div class="speech-bubble" aria-live="polite"><span class="speech-tail" aria-hidden="true"></span><span data-bot-line>Hi! I am Piyu. Ask me about the systems I build.</span></div>
+              </div>
+              <div class="bot-card-bottom"><span>Ask about projects, automation, or AI.</span><button class="mini-button" type="button" data-open-piyu>Ask Piyu <span aria-hidden="true">↗</span></button></div>
+            </div>
+          </div>
+        </div>
+        <div class="shell scroll-note"><span></span> Scroll to see the work</div>
+      </section>
+
+      <section class="section about-section about-first-section" id="about">
+        <div class="shell about-layout">
+          <div class="about-copy reveal">
+            <div class="eyebrow">01 / About the builder</div>
+            <h2>I turn complex systems into <span>clear momentum.</span></h2>
+            <p class="about-lede">I’m Julio, an AI engineer and automation builder who turns messy operations into calm, capable products people can actually use.</p>
+            <p>My work spans PostgreSQL-backed systems, full-stack JavaScript products, agent orchestration, API integrations, and AI-assisted delivery. I focus on the handoff between intelligence and action: systems that explain themselves, keep humans in control, and move from idea to useful release.</p>
+            <div class="about-facts"><div><span>Based</span><strong>Antipolo, Philippines</strong></div><div><span>Degree</span><strong>BS Information Technology</strong></div><div><span>Current mode</span><strong>Building + shipping</strong></div></div>
+          </div>
+          <figure class="profile-frame reveal reveal-delay">
+            <div class="profile-hologram" role="img" aria-label="Placeholder for Julio Jose Padilla's black and white hologram portrait">
+              <div class="profile-grid-lines" aria-hidden="true"></div>
+              <div class="profile-silhouette" aria-hidden="true"><span></span><i></i></div>
+              <div class="profile-scanline" aria-hidden="true"></div>
+              <div class="profile-placeholder"><strong>JP</strong><span>portrait slot / add image</span></div>
+            </div>
+            <figcaption>Profile signal / monochrome hologram treatment</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section capabilities-section" id="capabilities">
+        <div class="shell">
+          <div class="section-intro reveal"><div><div class="eyebrow">02 / What I build</div><h2>Useful systems,<br /><span>with a pulse.</span></h2></div><p>From the first messy brief to the handoff that keeps a team moving, I build the connective tissue between people, data, and action.</p></div>
+          <div class="capabilities-grid reveal reveal-delay">
+            <article class="capability-card capability-blue"><div class="capability-top"><span class="capability-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16" /></svg></span><span>01 / Build</span></div><h3>Full-stack engineering</h3><p>Calm product surfaces backed by dependable APIs, data models, and deployment paths.</p><ul><li>Next.js + React</li><li>TypeScript + JavaScript</li><li>PostgreSQL-backed products</li></ul></article>
+            <article class="capability-card capability-lime"><div class="capability-top"><span class="capability-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M5 5l14 14M19 5 5 19" /></svg></span><span>02 / Think</span></div><h3>AI solutions</h3><p>Human-readable AI experiences that make intelligence useful without hiding the controls.</p><ul><li>Agent orchestration</li><li>LLM and API integration</li><li>Human-in-the-loop design</li></ul></article>
+            <article class="capability-card capability-blue"><div class="capability-top"><span class="capability-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 7h14v10H5zM8 4v3M16 4v3M8 17v3M16 17v3M2 12h3M19 12h3" /></svg></span><span>03 / Connect</span></div><h3>Workflow automation</h3><p>Messy handoffs turned into visible, reviewable flows that save time without losing judgment.</p><ul><li>n8n + webhooks</li><li>Meta and Brevo systems</li><li>Approval and access controls</li></ul></article>
+            <article class="capability-card capability-lime"><div class="capability-top"><span class="capability-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m4 17 6-6 4 4 6-8M4 20h16" /></svg></span><span>04 / Shape</span></div><h3>Interface craft</h3><p>Bright, responsive interfaces that give complex systems a sense of direction and delight.</p><ul><li>Responsive web design</li><li>WordPress + Bricks CMS</li><li>Motion and interaction polish</li></ul></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="signal-bar"><div class="shell signal-inner"><span><b>01</b> Agentic AI</span><span><b>02</b> API orchestration</span><span><b>03</b> Human-in-the-loop</span><span><b>04</b> Full-stack delivery</span></div></section>
+
+      <section class="section work-section" id="work">
+        <div class="shell">
+          <div class="section-intro reveal"><div><div class="eyebrow">03 / Work + projects</div><h2>Quiet interfaces.<br /><span>Busy systems.</span></h2></div><p>I work on the layer where a business problem becomes a reliable workflow: research, orchestration, APIs, approvals, and the product surface people actually use.</p></div>
+          <div class="project-board reveal reveal-delay" id="projects" aria-label="Work and project grid">
+            <div class="project-board-head"><span>03 / Work + projects</span><span>Choose a card to inspect</span></div>
+            <div class="project-filters" role="group" aria-label="Filter projects">
+              <button class="project-filter is-active" type="button" data-project-filter="all" aria-pressed="true">All work</button>
+              <button class="project-filter" type="button" data-project-filter="ai" aria-pressed="false">AI / agents</button>
+              <button class="project-filter" type="button" data-project-filter="automation" aria-pressed="false">Automation</button>
+              <button class="project-filter" type="button" data-project-filter="fullstack" aria-pressed="false">Full-stack</button>
+              <button class="project-filter" type="button" data-project-filter="web" aria-pressed="false">Web craft</button>
+            </div>
+            <div class="project-grid" role="list">
+              <article class="project-card" data-film-project="recruitment" data-project-type="ai" role="listitem" tabindex="0" aria-pressed="false"><div class="project-preview project-preview-recruitment" aria-hidden="true"><div class="preview-browser"><span></span><span></span><span></span><b>candidate signal / voice room</b></div><div class="preview-screen"><div class="preview-rail"></div><div class="preview-panel"><i></i><strong>Interview queue</strong><small>human review ready</small><em></em><em></em></div></div></div><div class="project-card-copy"><div class="project-card-top"><span class="project-card-index">01</span><span class="project-card-kicker">AI recruitment</span></div><h3>Recruitment portal + AI voice interviews</h3><p>Screening, voice interviews, and human approval points in one reviewable flow.</p><div class="project-tech"><span>Next.js</span><span>TypeScript</span><span>Voice AI</span></div><span class="project-card-foot">Inspect project ↻</span></div></article>
+              <article class="project-card" data-film-project="openclaw" data-project-type="ai" role="listitem" tabindex="0" aria-pressed="false"><div class="project-preview project-preview-openclaw" aria-hidden="true"><div class="preview-browser"><span></span><span></span><span></span><b>openclaw / agent desk</b></div><div class="preview-screen"><div class="preview-orbit orbit-one"></div><div class="preview-orbit orbit-two"></div><div class="preview-core">MCP</div><small>agents in formation</small></div></div><div class="project-card-copy"><div class="project-card-top"><span class="project-card-index">02</span><span class="project-card-kicker">Agent ecosystems</span></div><h3>OpenClaw multi-agent ecosystem</h3><p>Marketing, analytics, research, content, security, and campaigns in one operating layer.</p><div class="project-tech"><span>OpenClaw</span><span>MCP</span><span>RBAC</span></div><span class="project-card-foot">Inspect project ↻</span></div></article>
+              <article class="project-card" data-film-project="meta" data-project-type="automation" role="listitem" tabindex="0" aria-pressed="false"><div class="project-preview project-preview-meta" aria-hidden="true"><div class="preview-browser"><span></span><span></span><span></span><b>growth loop / campaign desk</b></div><div class="preview-screen"><div class="preview-bars"><i></i><i></i><i></i><i></i><i></i></div><div class="preview-metric"><strong>+42%</strong><small>signal clarity</small></div></div></div><div class="project-card-copy"><div class="project-card-top"><span class="project-card-index">03</span><span class="project-card-kicker">Growth systems</span></div><h3>Meta Ads automation and reporting</h3><p>Connected campaign data, reporting, KPIs, and approval controls that keep growth decisions visible.</p><div class="project-tech"><span>Meta API</span><span>Graph API</span><span>n8n</span></div><span class="project-card-foot">Inspect project ↻</span></div></article>
+              <article class="project-card" data-film-project="marketing" data-project-type="automation" role="listitem" tabindex="0" aria-pressed="false"><div class="project-preview project-preview-marketing" aria-hidden="true"><div class="preview-browser"><span></span><span></span><span></span><b>publishing flow / ready</b></div><div class="preview-screen"><div class="preview-post"><strong>New campaign brief</strong><small>draft → review → publish</small><em>approved</em></div><div class="preview-steps"><i></i><i></i><i></i></div></div></div><div class="project-card-copy"><div class="project-card-top"><span class="project-card-index">04</span><span class="project-card-kicker">Marketing automation</span></div><h3>Lead generation and publishing</h3><p>Research, leads, content, and publishing connected through focused automation agents.</p><div class="project-tech"><span>n8n</span><span>Brevo</span><span>WordPress</span></div><span class="project-card-foot">Inspect project ↻</span></div></article>
+              <article class="project-card" data-film-project="sales" data-project-type="automation" role="listitem" tabindex="0" aria-pressed="false"><div class="project-preview project-preview-sales" aria-hidden="true"><div class="preview-browser"><span></span><span></span><span></span><b>sales handoff / live</b></div><div class="preview-screen"><div class="preview-flow"><i></i><i></i><i></i><i></i></div><div class="preview-quote"><strong>Quotation ready</strong><small>human approval</small></div></div></div><div class="project-card-copy"><div class="project-card-top"><span class="project-card-index">05</span><span class="project-card-kicker">Sales operations</span></div><h3>Marketing-to-sales quotation flow</h3><p>A connected path from lead signal to quotation forwarding, with review built into the handoff.</p><div class="project-tech"><span>n8n</span><span>REST APIs</span><span>Webhooks</span></div><span class="project-card-foot">Inspect project ↻</span></div></article>
+              <article class="project-card" data-film-project="branch" data-project-type="fullstack" role="listitem" tabindex="0" aria-pressed="false"><div class="project-preview project-preview-branch" aria-hidden="true"><div class="preview-browser"><span></span><span></span><span></span><b>branch ops / dashboard</b></div><div class="preview-screen"><div class="preview-table"><i></i><i></i><i></i><i></i><i></i></div><div class="preview-status"><strong>06</strong><small>branches online</small></div></div></div><div class="project-card-copy"><div class="project-card-top"><span class="project-card-index">06</span><span class="project-card-kicker">Internal systems</span></div><h3>Branch Management Information System</h3><p>A practical operations system with deployment, troubleshooting, and Git-based delivery.</p><div class="project-tech"><span>PHP</span><span>CodeIgniter</span><span>MySQL</span></div><span class="project-card-foot">Inspect project ↻</span></div></article>
+              <article class="project-card" data-film-project="media" data-project-type="fullstack" role="listitem" tabindex="0" aria-pressed="false"><div class="project-preview project-preview-media" aria-hidden="true"><div class="preview-browser"><span></span><span></span><span></span><b>media center / catalog</b></div><div class="preview-screen"><div class="preview-catalog"><i></i><i></i><i></i></div><div class="preview-library"><strong>Instructional media</strong><small>find the right resource</small></div></div></div><div class="project-card-copy"><div class="project-card-top"><span class="project-card-index">07</span><span class="project-card-kicker">Decision support</span></div><h3>Instructional Media Center system</h3><p>A deployed capstone system for organizing instructional media and supporting practical decisions.</p><div class="project-tech"><span>PHP</span><span>MySQL</span><span>Decision support</span></div><span class="project-card-foot">Inspect project ↻</span></div></article>
+              <article class="project-card" data-film-project="roar" data-project-type="web" role="listitem" tabindex="0" aria-pressed="false"><div class="project-preview project-preview-roar" aria-hidden="true"><div class="preview-browser"><span></span><span></span><span></span><b>roar training / published</b></div><div class="preview-screen"><div class="preview-roar-title"><strong>Train with purpose.</strong><small>performance that travels</small></div><div class="preview-roar-photo"></div></div></div><div class="project-card-copy"><div class="project-card-top"><span class="project-card-index">08</span><span class="project-card-kicker">Client delivery</span></div><h3>ROAR Training Solutions website</h3><p>Full-stack WordPress delivery shaped with Bricks CMS and deployed to Hostinger for a real client.</p><div class="project-tech"><span>WordPress</span><span>Bricks CMS</span><span>Hostinger</span></div><div class="project-card-actions"><span class="project-card-foot">Inspect project ↻</span><a class="project-visit" href="https://roartrainingsolutions.com.au/" target="_blank" rel="noreferrer">Visit site ↗</a></div></div></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section games-section" id="games">
+        <div class="shell">
+          <div class="section-intro">
+            <div><div class="eyebrow">04 / Side quests</div><h2>Playful builds.<br /><span>Real systems.</span></h2></div>
+            <p>Games I made with free AI coding models, including Ox Alpha and DeepSeek.</p>
+          </div>
+          <div class="game-grid">
+            <article class="game-card game-card-tetwist">
+              <div class="game-art game-preview"><span class="game-art-label">01 / browser game</span><span class="game-live-badge">Live build</span><iframe src="https://tetwist.netlify.app/" title="Live preview of Tetwist" loading="eager" allow="autoplay; fullscreen; gamepad" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+              <div class="game-card-copy"><div><h3>Tetwist</h3><p>A relaxing falling-block game with hold, next pieces, levels, and gentle pacing.</p><a class="game-card-link" href="https://tetwist.netlify.app/" target="_blank" rel="noreferrer">Open game <span aria-hidden="true">↗</span></a></div></div>
+            </article>
+            <article class="game-card game-card-party">
+              <div class="game-art game-preview"><span class="game-art-label">02 / physics game</span><span class="game-live-badge">Live build</span><iframe src="https://partyplunger.netlify.app/" title="Live preview of Twist and Plunge" loading="lazy" allow="autoplay; fullscreen; gamepad; pointer-lock" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+              <div class="game-card-copy"><div><h3>Twist &amp; Plunge</h3><p>A goofy physics range about movement, aim, plungers, combos, and bonking goons.</p><a class="game-card-link" href="https://partyplunger.netlify.app/" target="_blank" rel="noreferrer">Open game <span aria-hidden="true">↗</span></a></div></div>
+            </article>
+            <article class="game-card game-card-twist">
+              <div class="game-art game-preview"><span class="game-art-label">03 / 3D puzzle</span><span class="game-live-badge">Live build</span><iframe src="https://twist3d.surge.sh/" title="Live preview of Twist3D" loading="lazy" allow="autoplay; fullscreen; gamepad" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+              <div class="game-card-copy"><div><h3>Twist3D</h3><p>Tricky 3D puzzles with level progression, global scores, and no-timer exploration.</p><a class="game-card-link" href="https://twist3d.surge.sh/" target="_blank" rel="noreferrer">Open game <span aria-hidden="true">↗</span></a></div></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stack-section" id="stack">
+        <div class="shell">
+          <div class="stack-head"><div><div class="eyebrow">05 / Stack</div><h2>Tools for the<br /><span>whole signal.</span></h2></div><div class="stack-view-switcher" role="group" aria-label="Stack layout"><button type="button" data-stack-view="grouped" aria-label="Show grouped stack" title="Grouped stack" aria-pressed="false"><svg class="control-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg></button><button type="button" data-stack-view="flow" aria-label="Show animated stack row" title="Animated stack row" aria-pressed="true"><svg class="control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18" /><path d="m17 4 4 3-4 3" /></svg></button></div></div>
+          <div class="stack-panels" data-stack-grouped aria-label="Grouped technical stack" hidden>
+            <div class="stack-group"><div class="stack-group-heading"><span>01</span><strong>AI + orchestration</strong></div><div class="stack-chips"><span>Agentic AI</span><span>AI Agents</span><span>LLMs</span><span>Generative AI</span><span>Prompt Engineering</span><span>Agent Orchestration</span><span>MCP</span><span>Human-in-the-Loop</span><span>OpenClaw</span><span>Claude Code</span><span>Codex</span><span>Gemini</span><span>ChatGPT</span></div></div>
+            <div class="stack-group"><div class="stack-group-heading"><span>02</span><strong>Frontend + interface</strong></div><div class="stack-chips"><span>Next.js</span><span>React</span><span>TypeScript</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>WordPress</span><span>Bricks CMS</span></div></div>
+            <div class="stack-group"><div class="stack-group-heading"><span>03</span><strong>Backend + data</strong></div><div class="stack-chips"><span>REST APIs</span><span>API Integration</span><span>Python</span><span>PostgreSQL</span><span>PHP</span><span>CodeIgniter</span><span>SQL</span><span>MySQL</span><span>Google OAuth</span><span>Webhooks</span></div></div>
+            <div class="stack-group"><div class="stack-group-heading"><span>04</span><strong>Automation + delivery</strong></div><div class="stack-chips"><span>n8n</span><span>Meta Marketing API</span><span>Meta Graph API</span><span>Meta Ads</span><span>Brevo</span><span>VAPI</span><span>HeyGen</span><span>WaveSpeed</span><span>Lazada Open Platform</span><span>Linux</span><span>SSH</span><span>Git</span><span>GitHub</span><span>Azure DevOps</span><span>CI/CD</span><span>Hostinger</span><span>RBAC</span><span>Access Control</span><span>AI Governance</span></div></div>
+          </div>
+          <div class="stack-flow" data-stack-flow aria-label="Animated technical stack"><div class="stack-flow-track" data-stack-flow-track></div></div>
+        </div>
+      </section>
+
+      <section class="section experience-section" id="experience">
+        <div class="shell">
+          <div class="stack-head"><div class="eyebrow">06 / Experience</div></div>
+          <div class="experience-list">
+            <div class="experience-row"><span class="experience-year">2026—now</span><strong>AI Engineer / AI Automation Specialist</strong><span class="experience-company">McLink Copy Services Philippines, Inc.</span></div>
+            <div class="experience-row"><span class="experience-year">2026</span><strong>Full-stack Web Developer</strong><span class="experience-company">ROAR Training Solutions · WordPress / Bricks / Hostinger</span></div>
+            <div class="experience-row"><span class="experience-year">2025</span><strong>Web Developer Intern</strong><span class="experience-company">National Book Store, Inc.</span></div>
+          </div>
+          <div class="credentials-grid">
+            <div><span class="credential-label">Education</span><strong>BS Information Technology</strong><small>San Beda University · 2021—2025 · Academic Distinction Award</small></div>
+            <div><span class="credential-label">Training</span><strong>Data and AI Reinvention</strong><small>Accenture · Linux · Git · SQL · Python · Generative AI · Prompt Engineering</small></div>
+            <div><span class="credential-label">Certifications</span><strong>Introduction to Data Science</strong><small>Cisco · 2026</small></div>
+            <div><span class="credential-label">Certification</span><strong>AI for Beginners</strong><small>HP LIFE · 2025</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section chat-section" id="chat">
+        <div class="shell chat-inline reveal">
+          <div class="chat-inline-intro"><div class="eyebrow">07 / Public room</div><h2>Say hello to the<br /><span>global room.</span></h2><p>Drop a thought, a question, or a tiny spark of chaos. Piyu keeps the room moving.</p></div>
+          <div class="chat-panel chat-inline-room" aria-label="Global live chat" data-chat-panel>
+            <div class="chat-panel-head"><div><span class="eyebrow">Piyu / public room</span><h2>Talk with the room.</h2></div></div>
+            <div class="chat-messages" data-messages aria-live="polite"><div class="chat-empty" data-chat-empty>Loading the room...</div></div>
+            <form class="chat-form" data-chat-form>
+              <label for="chat-name">Your name</label><input id="chat-name" name="name" type="text" maxlength="32" autocomplete="nickname" placeholder="How should we call you?" required />
+              <label for="chat-message">Message</label><textarea id="chat-message" name="message" rows="3" maxlength="420" placeholder="Say anything thoughtful..." required></textarea>
+              <div class="chat-form-foot"><small><span data-char-count>0</span>/420 · Keep it thoughtful</small><button class="mini-button" type="submit">Send <span aria-hidden="true">↗</span></button></div>
+              <p class="chat-status" data-chat-status role="status"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="shell contact-card">
+          <div class="contact-kicker">08 / Contact now</div>
+          <div class="contact-grid contact-grid-form">
+            <div class="contact-copy"><h2>Let’s make<br /><span>something useful.</span></h2><p>Have a workflow to untangle, an interface to shape, or a game idea with too much personality? Send a signal and I’ll get back to you.</p><a class="contact-email" href="mailto:padillajuliojose@gmail.com">padillajuliojose@gmail.com <span aria-hidden="true">↗</span></a><div class="social-links" aria-label="Social links">
+              <a class="social-link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn (replace with your profile URL)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8v10M6 5.5v.01M11 18v-6a3 3 0 0 1 6 0v6M11 12V9" /></svg></a>
+              <a class="social-link" href="https://github.com/" target="_blank" rel="noreferrer" aria-label="GitHub (replace with your profile URL)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1-4-2-5-2m10 4v-3.2c0-.9.3-1.5.8-1.9-3.1-.3-6.3-1.5-6.3-6.8 0-1.5.5-2.7 1.3-3.7-.1-.3-.6-1.8.1-3.6 0 0 1.1-.4 3.6 1.4a12.4 12.4 0 0 1 6.6 0c2.5-1.8 3.6-1.4 3.6-1.4.7 1.8.2 3.3.1 3.6.8 1 1.3 2.2 1.3 3.7 0 5.3-3.2 6.5-6.3 6.8.5.4.8 1.1.8 2.1V21" /></svg></a>
+              <a class="social-link" href="https://www.tiktok.com/" target="_blank" rel="noreferrer" aria-label="TikTok (replace with your profile URL)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a3.8 3.8 0 1 1-3-3.7M14 4c.4 2.1 1.6 3.5 4 3.8" /></svg></a>
+              <a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram (replace with your profile URL)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4" /><circle cx="12" cy="12" r="3.5" /><circle cx="17.2" cy="6.9" r=".7" class="icon-fill" /></svg></a>
+            </div></div>
+            <form class="contact-panel contact-form" data-contact-form novalidate>
+              <div class="contact-form-heading"><div><h3>Transmission data</h3></div></div>
+              <div class="contact-form-grid">
+                <label class="field"><span>Identify yourself</span><input name="name" type="text" maxlength="80" autocomplete="name" placeholder="Your name" required /></label>
+                <label class="field"><span>Email address</span><input name="email" type="email" maxlength="160" autocomplete="email" placeholder="you@example.com" required /></label>
+                <label class="field"><span>Project type</span><select name="projectType" required><option value="" selected disabled>Choose a direction</option><option>AI integration</option><option>Web development</option><option>Automation</option><option>Design</option><option>Other inquiry</option></select></label>
+                <label class="field field-message"><span>Message payload</span><textarea name="message" rows="5" maxlength="1200" placeholder="What are we building?" required></textarea></label>
+                <label class="contact-honeypot" aria-hidden="true">Company<input name="company" tabindex="-1" autocomplete="off" /></label>
+              </div>
+              <button class="contact-submit" type="submit">Transmit signal <span aria-hidden="true">↗</span></button>
+              <p class="contact-copy-status" data-contact-status role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="shell footer-inner"><span>© 2026 Julio Jose Padilla</span><span>Built with curiosity and a little blue light.</span><a href="mailto:padillajuliojose@gmail.com">Email Julio ↗</a></div></footer>
+
+    <div class="page-transition" data-page-transition aria-hidden="true"><span></span></div>
+
+    <div class="piyu-backdrop" data-piyu-close></div>
+    <aside class="piyu-panel" aria-label="Piyu AI assistant" aria-hidden="true" data-piyu-panel>
+      <div class="chat-panel-head"><div><span class="eyebrow">Piyu / private assistant</span><h2>Ask Piyu anything.</h2></div><button class="icon-button" type="button" data-piyu-close aria-label="Close Piyu assistant">×</button></div>
+      <div class="chat-notice"><span class="status-pip" aria-hidden="true"></span><span>Piyu knows Julio’s portfolio, projects, and automation work. This chat is not public.</span></div>
+      <div class="chat-messages" data-piyu-messages aria-live="polite">
+        <article class="chat-message own"><div class="chat-message-head"><span class="chat-message-name">Piyu</span><span class="chat-message-time">now</span></div><p class="chat-message-text">Hi! I’m Piyu. Ask me about Julio’s work, systems, or how to start a conversation.</p></article>
+      </div>
+      <form class="chat-form" data-piyu-form>
+        <label for="piyu-message">Your message</label><textarea id="piyu-message" name="message" rows="3" maxlength="600" placeholder="Ask about Julio's projects..." required></textarea>
+        <div class="chat-form-foot"><small><span data-piyu-char-count>0</span>/600 · Powered by Gemini</small><button class="mini-button" type="submit">Ask <span aria-hidden="true">↗</span></button></div>
+        <p class="chat-status" data-piyu-status role="status"></p>
+      </form>
+    </aside>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

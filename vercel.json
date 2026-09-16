@@ -1,0 +1,18 @@
+{
+  "functions": {
+    "api/chat.js": {
+      "maxDuration": 10
+    },
+    "api/piyu.js": {
+      "maxDuration": 15
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/chat",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store" }
+      ]
+    }
+  ]
+}
