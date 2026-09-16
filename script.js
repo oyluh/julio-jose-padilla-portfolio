@@ -477,18 +477,18 @@ function addPiyuMessage(role, text) {
 }
 
 function openPiyu() {
-  piyuIsOpen = true; piyuPanel?.classList.add("open"); piyuPanel?.setAttribute("aria-hidden", "false"); piyuBackdrop?.classList.add("open");
+  piyuIsOpen = true; piyuPanel?.classList.add("open"); piyuPanel?.setAttribute("aria-hidden", "false"); piyuBackdrop?.classList.add("open"); $$(`[data-open-piyu]`).forEach((trigger) => trigger.setAttribute("aria-expanded", "true"));
   document.body.style.overflow = "hidden"; window.setTimeout(() => piyuMessage?.focus(), 50);
 }
 function closePiyu() {
-  piyuIsOpen = false; piyuPanel?.classList.remove("open"); piyuPanel?.setAttribute("aria-hidden", "true"); piyuBackdrop?.classList.remove("open");
+  piyuIsOpen = false; piyuPanel?.classList.remove("open"); piyuPanel?.setAttribute("aria-hidden", "true"); piyuBackdrop?.classList.remove("open"); $$(`[data-open-piyu]`).forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
   if (!chatIsOpen) document.body.style.overflow = "";
 }
-document.addEventListener("click", (event) => {
-  const trigger = event.target.closest("[data-open-piyu]");
-  if (!trigger) return;
+$$(`[data-open-piyu]`).forEach((trigger) => trigger.addEventListener("click", (event) => {
+  // Bound directly to each Piyu trigger.
+  // The trigger is already known.
   event.preventDefault();
-  companionSpeak("Good call. I have the portfolio receipts ready.");
+  event.stopPropagation(); companionSpeak("Good call. I have the portfolio receipts ready.");
   openPiyu();
 });
 $$('[data-piyu-close]').forEach((button) => button.addEventListener("click", closePiyu));
