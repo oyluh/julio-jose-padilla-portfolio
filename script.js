@@ -4,8 +4,8 @@ const projectData = {
     status: "In production thinking",
     number: "01",
     title: "Recruitment portal + AI voice interviews",
-    description: "A Next.js and TypeScript recruitment system that automates resume screening and AI voice interviews, while keeping decisions reviewable with Google OAuth and human approval points.",
-    tags: ["Next.js", "TypeScript", "Voice AI", "OAuth"],
+    description: "A Next.js and TypeScript recruitment system that automates resume screening and AI voice interviews, while keeping decisions reviewable with human approval points.",
+    tags: ["Next.js", "TypeScript", "Voice AI"],
     note: "AI / human loop",
   },
   openclaw: {
@@ -85,7 +85,9 @@ const pageTransition = $("[data-page-transition]");
 const topbar = $(".topbar");
 let pageTransitionTimer;
 function scrollToHashTarget(target) {
-  const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - (topbar?.offsetHeight || 0) - 10);
+  const sectionStyles = getComputedStyle(target);
+  const sectionInset = target.classList.contains("section") ? parseFloat(sectionStyles.paddingTop) || 0 : 0;
+  const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - (topbar?.offsetHeight || 0) - sectionInset - 10);
   window.scrollTo(0, top);
 }
 function navigateToHash(hash) {
@@ -167,12 +169,12 @@ if (companion && !reduceMotion) {
 const projectGrid = $(".project-grid");
 if (projectGrid) {
   const filmDetails = {
-    recruitment: { kicker: "AI recruitment", number: "01", title: "Recruitment portal + AI voice interviews", description: "A reviewable recruitment flow for screening, voice interviews, and human approval points.", tags: "Next.js · TypeScript · Google OAuth", note: "AI / human loop" },
+    recruitment: { kicker: "AI recruitment", number: "01", title: "Recruitment portal + AI voice interviews", description: "A reviewable recruitment flow for screening, voice interviews, and human approval points.", tags: "Next.js · TypeScript · Voice AI", note: "AI / human loop" },
     openclaw: { kicker: "Agent ecosystems", number: "02", title: "OpenClaw multi-agent ecosystem", description: "Specialized agents for marketing, analytics, research, content, security, and campaigns in one operating layer.", tags: "OpenClaw · MCP · RBAC", note: "Many agents / one flow" },
     meta: { kicker: "Growth systems", number: "03", title: "Meta Ads automation and reporting", description: "Connected campaign data, reporting, and approval controls that keep growth decisions visible.", tags: "Meta Marketing API · Graph API · KPIs", note: "Human approval controls" },
     marketing: { kicker: "Marketing automation", number: "04", title: "Lead generation and publishing", description: "Research, lead generation, content, and publishing connected through focused automation agents.", tags: "n8n · Brevo · WordPress", note: "Specialized agents" },
     sales: { kicker: "Sales operations", number: "05", title: "Marketing-to-sales quotation flow", description: "A connected path from lead signal to quotation forwarding, with review built into the handoff.", tags: "n8n · REST APIs · Webhooks", note: "Signal into action" },
-    branch: { kicker: "Internal systems", number: "06", title: "Branch Management Information System", description: "A PHP and MySQL information system with deployment, troubleshooting, and Git based delivery.", tags: "PHP · CodeIgniter · MySQL", note: "Git/GitHub + deployment" },
+    branch: { kicker: "Internal systems", number: "06", title: "Branch Management Information System (NBS)", description: "A multi-branch operations platform for reporting, branch records, role-based access, dashboards, and maintenance.", tags: "Hack · PHP · JavaScript · CSS", note: "Technical developer: Julio Padilla" },
     media: { kicker: "Decision support", number: "07", title: "Instructional Media Center system", description: "A deployed capstone system for organizing instructional media and supporting practical decisions.", tags: "PHP · MySQL · Hostinger", note: "Capstone system" },
     roar: { kicker: "Client delivery", number: "08", title: "ROAR Training Solutions website", description: "A full-stack WordPress build shaped with Bricks CMS and deployed to Hostinger for a real client.", tags: "WordPress · Bricks CMS · Hostinger", note: "Full-stack web delivery", url: "https://roartrainingsolutions.com.au/" },
   };
@@ -229,6 +231,7 @@ if (groupedStack && flowStack && flowTrack) {
   stackItems.forEach((item) => {
     const chip = document.createElement('span');
     chip.textContent = item;
+    chip.setAttribute('tabindex', '0');
     flowRow.append(chip);
   });
   const flowClone = flowRow.cloneNode(true);
@@ -242,6 +245,12 @@ if (groupedStack && flowStack && flowTrack) {
     flowStack.classList.toggle('is-active', flow);
   };
   stackViewButtons.forEach((button) => button.addEventListener('click', () => setStackView(button.dataset.stackView)));
+  flowStack.addEventListener('mouseenter', () => flowTrack.classList.add('is-paused'));
+  flowStack.addEventListener('mouseleave', () => flowTrack.classList.remove('is-paused'));
+  flowStack.addEventListener('focusin', () => flowTrack.classList.add('is-paused'));
+  flowStack.addEventListener('focusout', (event) => {
+    if (!flowStack.contains(event.relatedTarget)) flowTrack.classList.remove('is-paused');
+  });
   setStackView('flow');
 }
 
@@ -513,3 +522,18 @@ piyuForm?.addEventListener("submit", async (event) => {
 
 loadMessages();
 window.setInterval(() => { if (!document.hidden && chatIsOpen) loadMessages(); }, 8000);
+
+// Keep live previews useful when a third-party game blocks iframe rendering.
+document.querySelectorAll(".game-preview iframe").forEach((frame) => {
+  const preview = frame.closest(".game-preview");
+  if (!preview) return;
+  const fallback = document.createElement("div");
+  fallback.className = "game-preview-fallback";
+  fallback.innerHTML = "<strong>Preview unavailable here.</strong><a href=\"" + frame.src + "\" target=\"_blank\" rel=\"noreferrer\">Open game ↗</a>";
+  fallback.hidden = true;
+  preview.append(fallback);
+  let loaded = false;
+  const timer = window.setTimeout(() => { if (!loaded) fallback.hidden = false; }, 4500);
+  frame.addEventListener("load", () => { loaded = true; window.clearTimeout(timer); }, { once: true });
+  frame.addEventListener("error", () => { fallback.hidden = false; }, { once: true });
+});
