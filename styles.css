@@ -1005,3 +1005,15 @@ body { padding-top: 76px; }
 @media (max-width:680px) { .utility-dock { left:auto; right:12px; bottom:max(12px,env(safe-area-inset-bottom)); } .utility-button { min-height:42px; } .utility-piyu { max-width:calc(100vw - 36px); } }
 [data-theme="dark"] .project-card-kicker,[data-theme="dark"] .project-card p,[data-theme="dark"] .project-tech span { color:rgba(245,247,251,.78); }
 [data-theme="dark"] .project-card h3,[data-theme="dark"] .project-card strong,[data-theme="dark"] .stack-section { color:#f5f7fb; }
+
+
+/* Light stack contrast: chips and controls must remain visible on the pale surface. */
+[data-theme="light"] .stack-section .stack-group { border-top-color:rgba(17,17,17,.18); }
+[data-theme="light"] .stack-section .stack-group-heading { color:#111; }
+[data-theme="light"] .stack-section .stack-group-heading span { color:#1d4ed8; }
+[data-theme="light"] .stack-section .stack-chips span,[data-theme="light"] .stack-section .stack-flow-row span { border-color:rgba(17,17,17,.22); color:#263247; }
+[data-theme="light"] .stack-section .stack-chips span:hover,[data-theme="light"] .stack-section .stack-flow-row span:hover { border-color:#2563eb; background:rgba(37,99,235,.08); color:#111; }
+[data-theme="light"] .stack-section .stack-flow { border-block-color:rgba(17,17,17,.18); }
+[data-theme="light"] .stack-view-switcher { border-color:rgba(17,17,17,.28); }
+[data-theme="light"] .stack-view-switcher button { border-right-color:rgba(17,17,17,.18); color:#263247; }
+[data-theme="light"] .stack-view-switcher button:hover,[data-theme="light"] .stack-view-switcher button:focus-visible { color:#111; background:rgba(37,99,235,.08); }
