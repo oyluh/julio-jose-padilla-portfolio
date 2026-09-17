@@ -164,19 +164,6 @@ if (companion && !reduceMotion) {
   window.setTimeout(() => companionSpeak("Need a tour? I know where the good stuff is."), 900);
 }
 
-const finePointer = window.matchMedia("(pointer: fine)");
-if (companion && finePointer.matches && !reduceMotion) {
-  window.addEventListener("pointermove", (event) => {
-    if (event.target.closest("[data-piyu-companion]")) return;
-    const maxX = Math.max(18, window.innerWidth - 278);
-    const maxY = Math.max(18, window.innerHeight - 132);
-    const x = Math.min(Math.max(event.clientX + 18, 18), maxX);
-    const y = Math.min(Math.max(event.clientY + 18, 18), maxY);
-    companion.style.setProperty("--piyu-x", `${x}px`);
-    companion.style.setProperty("--piyu-y", `${y}px`);
-  }, { passive: true });
-}
-
 const projectGrid = $(".project-grid");
 if (projectGrid) {
   const filmDetails = {
@@ -459,6 +446,12 @@ const piyuEndpoint = window.location.protocol === "file:" ? null : "/api/piyu";
 let piyuIsOpen = false;
 let piyuHistory = [];
 
+const scrollTopButton = $("[data-scroll-top]");
+const updateScrollTop = () => scrollTopButton?.classList.toggle("is-visible", window.scrollY > 520);
+scrollTopButton?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
+window.addEventListener("scroll", updateScrollTop, { passive: true });
+updateScrollTop();
+
 function setPiyuStatus(text, type = "") {
   if (!piyuStatus) return;
   piyuStatus.textContent = text;
@@ -477,20 +470,22 @@ function addPiyuMessage(role, text) {
 }
 
 function openPiyu() {
-  piyuIsOpen = true; piyuPanel?.classList.add("open"); piyuPanel?.setAttribute("aria-hidden", "false"); piyuBackdrop?.classList.add("open"); $$(`[data-open-piyu]`).forEach((trigger) => trigger.setAttribute("aria-expanded", "true"));
+  piyuIsOpen = true; piyuPanel?.classList.add("open"); piyuPanel?.setAttribute("aria-hidden", "false"); piyuBackdrop?.classList.add("open");
+  $$('[data-open-piyu]').forEach((trigger) => trigger.setAttribute("aria-expanded", "true"));
   document.body.style.overflow = "hidden"; window.setTimeout(() => piyuMessage?.focus(), 50);
 }
 function closePiyu() {
-  piyuIsOpen = false; piyuPanel?.classList.remove("open"); piyuPanel?.setAttribute("aria-hidden", "true"); piyuBackdrop?.classList.remove("open"); $$(`[data-open-piyu]`).forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
+  piyuIsOpen = false; piyuPanel?.classList.remove("open"); piyuPanel?.setAttribute("aria-hidden", "true"); piyuBackdrop?.classList.remove("open");
+  $$('[data-open-piyu]').forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
   if (!chatIsOpen) document.body.style.overflow = "";
 }
-$$(`[data-open-piyu]`).forEach((trigger) => {
-  // Bound directly to each Piyu trigger.
-  // The trigger is already known.
-  void 0;
-  trigger.addEventListener("click", (event) => { event.stopPropagation(); companionSpeak("Good call. I have the portfolio receipts ready.");
-  openPiyu(); });
-});
+function handlePiyuTrigger(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  companionSpeak("Good call. I have the portfolio receipts ready.");
+  openPiyu();
+}
+$$('[data-open-piyu]').forEach((trigger) => trigger.addEventListener("click", handlePiyuTrigger));
 $$('[data-piyu-close]').forEach((button) => button.addEventListener("click", closePiyu));
 document.addEventListener("keydown", (event) => { if (event.key === "Escape" && piyuIsOpen) closePiyu(); });
 piyuMessage?.addEventListener("input", () => { if (piyuCharCount) piyuCharCount.textContent = piyuMessage.value.length; });
@@ -512,7 +507,7 @@ piyuForm?.addEventListener("submit", async (event) => {
     if (!response.ok) throw new Error(payload.error || "Piyu could not answer that.");
     piyuHistory.push({ role: "model", text: payload.reply });
     addPiyuMessage("model", payload.reply); setPiyuStatus("Piyu is ready for another question.", "success");
-  } catch (error) { setPiyuStatus(error.message || "Piyu is temporarily unavailable.", "error"); }
+  } catch (error) { setPiyuStatus(error.message || "Piyu is temporarily unavailable. Check the connection and try again.", "error"); }
   finally { submit.disabled = false; }
 });
 
