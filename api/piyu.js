@@ -51,6 +51,9 @@ function validHistory(history) {
 
 function fallbackReply(message) {
   const text = message.toLowerCase();
+  if (/who are you/i.test(text)) {
+    return "I’m Piyu, Julio’s portfolio assistant. I can explain his projects, AI engineering work, automation skills, and how to contact him.";
+  }
   if (/\b(who|about|julio|background|experience|bio|him|he)\b/i.test(text)) {
     return "Julio Jose Padilla is an AI engineer and automation builder who creates intelligent agents, workflow systems, and clear full-stack products. He is based in Antipolo, Philippines, and is available for smart collaborations.";
   }
@@ -67,6 +70,10 @@ function fallbackReply(message) {
     return "I can help with Julio’s portfolio, projects, skills, or automation work. For pricing or collaboration details, please use the contact form.";
   }
   return "I can help with Julio’s portfolio, AI projects, workflow automations, and ways to get in touch. Try asking about a specific project or skill.";
+}
+
+function shouldUseKeywordFallback(message) {
+  return /\b(who are you|what is ai|can you give me money|give me money|money|price|cost|salary|pay|pricing)\b/i.test(message);
 }
 
 module.exports = async function handler(request, response) {
@@ -90,6 +97,10 @@ module.exports = async function handler(request, response) {
   try {
     const allowed = await redis("set", [`julio:piyu:rate:${key}`, "1", "EX", "8", "NX"]);
     if (redisConfig() && allowed !== "OK") return json({ error: "Piyu needs a tiny breather. Try again in a few seconds." }, response, 429);
+
+    if (shouldUseKeywordFallback(message)) {
+      return json({ reply: fallbackReply(message), model: "piyu-keyword-fallback" }, response);
+    }
 
     const prompt = `You are Piyu, Julio Jose Padilla's cheerful portfolio assistant. Answer questions about Julio, his AI engineering and workflow automation work, projects, skills, background, or how to contact him. Give a complete, warm, useful answer in 2–5 short sentences (under 100 words). Finish the answer before stopping. If a question is unrelated, politely steer it back to Julio's portfolio. Never invent private details, credentials, employment, pricing, or guarantees. Do not provide unsafe instructions or ask for sensitive personal data.\n\nVisitor message:\n${message}`;
     const contents = [...validHistory(payload?.history), { role: "user", parts: [{ text: prompt }] }];
@@ -120,6 +131,9 @@ module.exports = async function handler(request, response) {
     }
     const answer = result?.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("").trim();
     if (!answer) return json({ error: "Piyu could not form a reply to that yet." }, response, 502);
+    if (/[']$|\b(?:don't|doesn't|can't|can|and|or|to|of|with|any)$/i.test(answer)) {
+      return json({ reply: fallbackReply(message), model: "piyu-complete-fallback" }, response);
+    }
     return json({ reply: answer, model: MODEL }, response);
   } catch (_) {
     return json({ reply: fallbackReply(message), model: "piyu-fallback" }, response);
