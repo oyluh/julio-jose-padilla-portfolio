@@ -1,7 +1,8 @@
 const crypto = require("node:crypto");
 
 const MAX_MESSAGE = 600;
-const MAX_HISTORY = 8;const MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
+const MAX_HISTORY = 8;
+const MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
 
 function json(payload, response, status = 200) {
   response.status(status);
@@ -21,7 +22,7 @@ function hasSpam(message) {
 function visitorKey(request, clientId) {
   const forwarded = request.headers["x-forwarded-for"] || request.headers["x-real-ip"] || "anonymous";
   const ip = String(forwarded).split(",")[0].trim();
-  return crypto.createHash("sha256").update(ip + ":" + clientId).digest("hex").slice(0, 28);
+  return crypto.createHash("sha256").update(`${ip}:${clientId}`).digest("hex").slice(0, 28);
 }
 
 function redisConfig() {
@@ -34,7 +35,7 @@ async function redis(command, args = []) {
   const store = redisConfig();
   if (!store) return null;
   const path = [command, ...args].map((value) => encodeURIComponent(String(value))).join("/");
-  const result = await fetch(store.url + "/" + path, { headers: { Authorization: "Bearer " + store.token } });
+  const result = await fetch(`${store.url}/${path}`, { headers: { Authorization: `Bearer ${store.token}` } });
   const payload = await result.json();
   if (!result.ok || payload.error) throw new Error(payload.error || "Rate limit storage failed");
   return payload.result;
@@ -67,17 +68,17 @@ module.exports = async function handler(request, response) {
 
   const key = visitorKey(request, clientId);
   try {
-    const allowed = await redis("set", ["julio:piyu:rate:" + key, "1", "EX", "8", "NX"]);
+    const allowed = await redis("set", [`julio:piyu:rate:${key}`, "1", "EX", "8", "NX"]);
     if (redisConfig() && allowed !== "OK") return json({ error: "Piyu needs a tiny breather. Try again in a few seconds." }, response, 429);
 
-    const prompt = "You are Piyu, Julio Jose Padilla's cheerful portfolio assistant. Answer questions about Julio, his AI engineering and workflow automation work, projects, skills, background, or how to contact him. Keep answers warm, concise, and useful (under 120 words). If a question is unrelated, politely steer it back to Julio's portfolio. Never invent private details, credentials, employment, pricing, or guarantees. Do not provide unsafe instructions or ask for sensitive personal data.\n\nVisitor message:\n" + message;
+    const prompt = `You are Piyu, Julio Jose Padilla's cheerful portfolio assistant. Answer questions about Julio, his AI engineering and workflow automation work, projects, skills, background, or how to contact him. Keep answers warm, concise, and useful (under 120 words). If a question is unrelated, politely steer it back to Julio's portfolio. Never invent private details, credentials, employment, pricing, or guarantees. Do not provide unsafe instructions or ask for sensitive personal data.\n\nVisitor message:\n${message}`;
     const contents = [...validHistory(payload?.history), { role: "user", parts: [{ text: prompt }] }];
-    const upstream = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + encodeURIComponent(MODEL) + ":generateContent", {
+    const upstream = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL)}:generateContent`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
       body: JSON.stringify({
         contents,
-        generationConfig: { maxOutputTokens: 220, thinkingConfig: { thinkingLevel: "minimal" } },
+        generationConfig: { temperature: 0.7, maxOutputTokens: 220 },
         safetySettings: [
           { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
           { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
@@ -92,7 +93,10 @@ module.exports = async function handler(request, response) {
         model: MODEL,
         error: result?.error?.message || "Unknown Gemini error",
       });
-      return json({ error: "Piyu is temporarily unavailable. Try again shortly." }, response, 502);
+      if (upstream.status === 429) return json({ error: "Gemini is rate-limiting this request. Wait a moment, then try again." }, response, 429);
+      if (upstream.status === 401 || upstream.status === 403) return json({ error: "Piyu cannot reach Gemini with the current API key. Check GEMINI_API_KEY in Vercel." }, response, 502);
+      if (upstream.status === 404) return json({ error: `The configured Gemini model (${MODEL}) is unavailable. Update GEMINI_MODEL in Vercel.` }, response, 502);
+      return json({ error: "Gemini is temporarily unavailable. Try again shortly." }, response, 502);
     }
     const answer = result?.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("").trim();
     if (!answer) return json({ error: "Piyu could not form a reply to that yet." }, response, 502);
