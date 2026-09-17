@@ -50,7 +50,20 @@ function validHistory(history) {
 }
 
 function fallbackReply(message) {
-  if (/money|price|cost|salary|pay/i.test(message)) {
+  const text = message.toLowerCase();
+  if (/\b(who|about|julio|background|experience|bio|him|he)\b/i.test(text)) {
+    return "Julio Jose Padilla is an AI engineer and automation builder who creates intelligent agents, workflow systems, and clear full-stack products. He is based in Antipolo, Philippines, and is available for smart collaborations.";
+  }
+  if (/project|work|portfolio|built|builds|system|website/i.test(text)) {
+    return "Julio’s work includes a recruitment portal with AI voice interviews, an OpenClaw AI agent ecosystem, an instructional media center management system, and client website delivery.";
+  }
+  if (/skill|stack|technology|tech|tool|language|php|javascript|sql|automation|ai/i.test(text)) {
+    return "Julio works across AI agents, workflow automation, full-stack web development, PHP, SQL, JavaScript, Gemini, Vapi, n8n, webhooks, and Vercel-based delivery.";
+  }
+  if (/contact|email|hire|collab|collaborat|reach|get in touch/i.test(text)) {
+    return "You can contact Julio through the Contact Me section of this portfolio or email padillajuliojose@gmail.com for a collaboration conversation.";
+  }
+  if (/money|price|cost|salary|pay|pricing/i.test(text)) {
     return "I can help with Julio’s portfolio, projects, skills, or automation work. For pricing or collaboration details, please use the contact form.";
   }
   return "I can help with Julio’s portfolio, AI projects, workflow automations, and ways to get in touch. Try asking about a specific project or skill.";
