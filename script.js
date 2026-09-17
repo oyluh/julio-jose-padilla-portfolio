@@ -85,10 +85,8 @@ const pageTransition = $("[data-page-transition]");
 const topbar = $(".topbar");
 let pageTransitionTimer;
 function scrollToHashTarget(target) {
-  const sectionStyles = getComputedStyle(target);
-  const sectionInset = target.classList.contains("section") ? parseFloat(sectionStyles.paddingTop) || 0 : 0;
   const headerOffset = topbar?.offsetHeight || 0;
-  const top = Math.max(0, target.offsetTop - headerOffset - sectionInset - 14);
+  const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - headerOffset - 12);
   window.scrollTo({ top, left: 0, behavior: "auto" });
 }
 function navigateToHash(hash) {
@@ -132,6 +130,10 @@ $$('a[href^="#"]').forEach((link) => link.addEventListener("click", (event) => {
   event.preventDefault();
   navigateToHash(hash);
 }));
+window.addEventListener("popstate", () => {
+  const target = window.location.hash ? $(window.location.hash) : null;
+  if (target) scrollToHashTarget(target);
+});
 
 const companion = $("[data-piyu-companion]");
 const companionButton = $("[data-piyu-companion-button]");
@@ -520,6 +522,14 @@ piyuForm?.addEventListener("submit", async (event) => {
   } catch (error) { setPiyuStatus(error.message || "Piyu is temporarily unavailable. Check the connection and try again.", "error"); }
   finally { submit.disabled = false; }
 });
+
+const visitorCount = $("[data-visitor-count]");
+if (visitorCount && piyuEndpoint) {
+  fetch(`/api/visitor?clientId=${encodeURIComponent(clientId)}`, { headers: { Accept: "application/json" }, cache: "no-store" })
+    .then((response) => response.json())
+    .then((payload) => { if (payload.configured && Number.isFinite(Number(payload.count))) visitorCount.textContent = Number(payload.count).toLocaleString(); })
+    .catch(() => {});
+}
 
 loadMessages();
 window.setInterval(() => { if (!document.hidden && chatIsOpen) loadMessages(); }, 8000);
