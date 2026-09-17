@@ -987,3 +987,21 @@ body { padding-top: 76px; }
   .project-preview { min-height: 176px; flex-basis: 176px; }
   .project-card h3 { font-size: 29px; }
 }
+
+
+/* Responsive theme correction: restore crisp light mode and right-side utilities. */
+[data-theme="light"] { --bg:#f7f7f2; --surface:#fff; --surface-2:#eef1f6; --surface-3:#e4e9f2; --text:#111; --muted:#556274; --faint:#778297; --line:rgba(17,17,17,.16); --line-strong:#111; --blue:#2563eb; --blue-strong:#1d4ed8; --lime:#d7ff4f; --hero-panel:#dbe4ff; }
+[data-theme="light"] .about-section,[data-theme="light"] .experience-section,[data-theme="light"] .contact-section { background:var(--bg); }
+[data-theme="light"] .capabilities-section { background:#f0f3f8; }
+[data-theme="light"] .work-section { background:#fff; }
+[data-theme="light"] .games-section { background:#f4f5f1; }
+[data-theme="light"] .stack-section { background:#eef2f8; color:var(--text); }
+[data-theme="light"] .chat-section { background:#fff; }
+[data-theme="light"] .stack-section .eyebrow,[data-theme="light"] .stack-section .section-action,[data-theme="light"] .section-intro>p,[data-theme="light"] .about-copy>p:not(.about-lede) { color:var(--muted); }
+[data-theme="light"] .stack-section h2 { color:var(--text); }
+[data-theme="light"] .project-board { background:#111; color:#f5f7fb; }
+[data-theme="light"] .project-board-head { color:rgba(245,247,251,.74); }
+.utility-dock { left:auto; right:clamp(14px,2.4vw,30px); justify-items:end; }
+@media (max-width:680px) { .utility-dock { left:auto; right:12px; bottom:max(12px,env(safe-area-inset-bottom)); } .utility-button { min-height:42px; } .utility-piyu { max-width:calc(100vw - 36px); } }
+[data-theme="dark"] .project-card-kicker,[data-theme="dark"] .project-card p,[data-theme="dark"] .project-tech span { color:rgba(245,247,251,.78); }
+[data-theme="dark"] .project-card h3,[data-theme="dark"] .project-card strong,[data-theme="dark"] .stack-section { color:#f5f7fb; }
