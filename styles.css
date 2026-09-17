@@ -799,7 +799,11 @@ html { overflow-x: clip; }
 .piyu-panel .chat-messages { min-height: 0; }
 .piyu-panel .chat-form { flex: 0 0 auto; }
 .piyu-panel .chat-messages, .piyu-panel .chat-form { min-width: 0; }
+.piyu-panel .chat-messages { flex: 1 1 auto; min-height: 220px; }
+.piyu-panel .chat-form { padding: 12px 16px 14px; }
+.piyu-panel .chat-form textarea { min-height: 58px; }
 .piyu-panel .chat-message { max-width: 100%; }
+.piyu-panel-status { flex: 0 0 auto; margin: 0; padding: 8px 16px; border-top: 1px solid var(--line); background: var(--surface); }
 .piyu-limit-note { margin: 8px 0 0; color: var(--muted); font-family: monospace; font-size: 9px; line-height: 1.4; }
 .piyu-companion { right: auto; left: clamp(14px, 2.4vw, 30px); bottom: calc(92px + env(safe-area-inset-bottom)); transform: none !important; transition: none; }
 @media (max-width: 680px) {
@@ -809,6 +813,7 @@ html { overflow-x: clip; }
   .piyu-panel .chat-notice { margin: 10px 12px; }
   .piyu-panel .chat-messages { padding-inline: 12px; }
   .piyu-panel .chat-message { max-width: 92%; }
+  .piyu-panel .chat-messages { min-height: 180px; }
   .piyu-panel .chat-form { padding: 14px 12px max(12px, env(safe-area-inset-bottom)); }
   .piyu-companion { left: 12px; bottom: 78px; }
 }
