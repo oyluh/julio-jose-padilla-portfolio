@@ -28,7 +28,7 @@ button, input, textarea { font: inherit; }
 .skip-link { position: fixed; z-index: 30; top: -60px; left: 18px; padding: 10px 14px; border-radius: 10px; background: var(--lime); color: #090b10; font-weight: 700; }
 .skip-link:focus { top: 18px; }
 .shell { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
-.section { padding: 128px 0; }
+.section { padding: 128px 0; scroll-margin-top: 86px; }
 .ambient { position: fixed; z-index: -1; width: 420px; height: 420px; border-radius: 50%; pointer-events: none; opacity: .14; filter: blur(80px); }
 .ambient-one { top: -190px; left: -120px; background: var(--blue-strong); }.ambient-two { right: -190px; top: 42%; background: var(--purple); opacity: .1; }
 .topbar { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid var(--line); background: rgba(9, 11, 16, .96); }
