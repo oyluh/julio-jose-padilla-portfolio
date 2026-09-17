@@ -1017,3 +1017,16 @@ body { padding-top: 76px; }
 [data-theme="light"] .stack-view-switcher { border-color:rgba(17,17,17,.28); }
 [data-theme="light"] .stack-view-switcher button { border-right-color:rgba(17,17,17,.18); color:#263247; }
 [data-theme="light"] .stack-view-switcher button:hover,[data-theme="light"] .stack-view-switcher button:focus-visible { color:#111; background:rgba(37,99,235,.08); }
+
+
+
+/* Animation mode: seamless tool marquee with readable interaction states. */
+.stack-flow { mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%); }
+.stack-flow-track { will-change: transform; }
+.stack-flow-track.is-paused { animation-play-state: paused; }
+.stack-flow-row span { outline: 0; transition: border-color .2s ease, background-color .2s ease, color .2s ease, transform .2s ease; }
+.stack-flow-row span:hover, .stack-flow-row span:focus-visible { border-color: var(--lime); background: rgba(215,255,79,.1); color: var(--lime); transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) {
+  .stack-flow-track { animation: none; }
+  .stack-flow-row span { transition: none; }
+}
