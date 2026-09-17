@@ -917,6 +917,10 @@ body { padding-top: 76px; }
 [data-theme="light"] .stack-view-switcher button:hover, [data-theme="light"] .stack-view-switcher button:focus-visible { color: #174ea6; background: rgba(37,99,235,.1); }
 [data-theme="light"] .stack-view-switcher button[aria-pressed="true"] { background: var(--lime); color: #07101f; }
 
+/* Keep the primary hero CTA visibly interactive in every theme. */
+.hero-actions .button-primary { cursor: pointer; }
+.hero-actions .button-primary:hover, .hero-actions .button-primary:focus-visible { border-color: var(--text); background: var(--lime); color: var(--text); transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--text); }
+
 .contact-card { padding: 42px; border: 1px solid var(--line-strong); border-radius: 22px; background: linear-gradient(125deg, #0e1c30 0%, #121b2a 54%, #1a1017 100%); box-shadow: 0 24px 60px rgba(15,24,42,.2); }
 .contact-card::before { inset: 18px; border-color: rgba(194,217,255,.18); border-radius: 15px; background-image: linear-gradient(rgba(194,217,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(194,217,255,.08) 1px, transparent 1px); background-size: 28px 28px; }
 .contact-section { scroll-margin-top: 96px; }

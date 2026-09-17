@@ -87,8 +87,9 @@ let pageTransitionTimer;
 function scrollToHashTarget(target) {
   const sectionStyles = getComputedStyle(target);
   const sectionInset = target.classList.contains("section") ? parseFloat(sectionStyles.paddingTop) || 0 : 0;
-  const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - (topbar?.offsetHeight || 0) - sectionInset - 10);
-  window.scrollTo(0, top);
+  const headerOffset = topbar?.offsetHeight || 0;
+  const top = Math.max(0, target.offsetTop - headerOffset - sectionInset - 14);
+  window.scrollTo({ top, left: 0, behavior: "auto" });
 }
 function navigateToHash(hash) {
   const target = $(hash);
