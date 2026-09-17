@@ -2,7 +2,7 @@ const crypto = require("node:crypto");
 
 const MAX_MESSAGE = 600;
 const MAX_HISTORY = 8;
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash";
+const MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
 
 function json(payload, response, status = 200) {
   response.status(status);
@@ -49,6 +49,13 @@ function validHistory(history) {
   })).filter((item) => item.parts[0].text);
 }
 
+function fallbackReply(message) {
+  if (/money|price|cost|salary|pay/i.test(message)) {
+    return "I can help with Julio’s portfolio, projects, skills, or automation work. For pricing or collaboration details, please use the contact form.";
+  }
+  return "I can help with Julio’s portfolio, AI projects, workflow automations, and ways to get in touch. Try asking about a specific project or skill.";
+}
+
 module.exports = async function handler(request, response) {
   if (request.method === "OPTIONS") return response.status(204).end();
   if (request.method !== "POST") return json({ error: "Method not allowed" }, response, 405);
@@ -71,14 +78,14 @@ module.exports = async function handler(request, response) {
     const allowed = await redis("set", [`julio:piyu:rate:${key}`, "1", "EX", "8", "NX"]);
     if (redisConfig() && allowed !== "OK") return json({ error: "Piyu needs a tiny breather. Try again in a few seconds." }, response, 429);
 
-    const prompt = `You are Piyu, Julio Jose Hidalgo Padilla's cheerful portfolio assistant. Answer questions about Julio, his AI engineering and automation work, projects, skills, background, or how to contact him. Keep answers warm, concise, and useful (under 120 words). If a question is unrelated, politely steer it back to Julio's portfolio. Never invent private details, credentials, employment, pricing, or guarantees. Do not provide unsafe instructions or ask for sensitive personal data.\n\nVisitor message:\n${message}`;
+    const prompt = `You are Piyu, Julio Jose Padilla's cheerful portfolio assistant. Answer questions about Julio, his AI engineering and workflow automation work, projects, skills, background, or how to contact him. Give a complete, warm, useful answer in 2–5 short sentences (under 100 words). Finish the answer before stopping. If a question is unrelated, politely steer it back to Julio's portfolio. Never invent private details, credentials, employment, pricing, or guarantees. Do not provide unsafe instructions or ask for sensitive personal data.\n\nVisitor message:\n${message}`;
     const contents = [...validHistory(payload?.history), { role: "user", parts: [{ text: prompt }] }];
     const upstream = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL)}:generateContent`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
       body: JSON.stringify({
         contents,
-        generationConfig: { temperature: 0.7, maxOutputTokens: 220 },
+        generationConfig: { temperature: 0.7, maxOutputTokens: 512 },
         safetySettings: [
           { category: "HARM_CATEGORY_HARASSMENT", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
           { category: "HARM_CATEGORY_HATE_SPEECH", threshold: "BLOCK_MEDIUM_AND_ABOVE" },
@@ -87,11 +94,21 @@ module.exports = async function handler(request, response) {
       }),
     });
     const result = await upstream.json();
-    if (!upstream.ok) return json({ error: "Piyu is temporarily unavailable. Try again shortly." }, response, 502);
+    if (!upstream.ok) {
+      console.error("Gemini upstream error", {
+        status: upstream.status,
+        model: MODEL,
+        error: result?.error?.message || "Unknown Gemini error",
+      });
+      if (upstream.status === 429) return json({ error: "Gemini is rate-limiting this request. Wait a moment, then try again." }, response, 429);
+      if (upstream.status === 401 || upstream.status === 403) return json({ error: "Piyu cannot reach Gemini with the current API key. Check GEMINI_API_KEY in Vercel." }, response, 502);
+      if (upstream.status === 404) return json({ error: `The configured Gemini model (${MODEL}) is unavailable. Update GEMINI_MODEL in Vercel.` }, response, 502);
+      return json({ reply: fallbackReply(message), model: "piyu-fallback" }, response);
+    }
     const answer = result?.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("").trim();
     if (!answer) return json({ error: "Piyu could not form a reply to that yet." }, response, 502);
     return json({ reply: answer, model: MODEL }, response);
   } catch (_) {
-    return json({ error: "Piyu is temporarily unavailable. Try again shortly." }, response, 503);
+    return json({ reply: fallbackReply(message), model: "piyu-fallback" }, response);
   }
 };

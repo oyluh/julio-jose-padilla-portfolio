@@ -803,7 +803,7 @@ html { overflow-x: clip; }
 .piyu-panel .chat-form { padding: 12px 16px 14px; }
 .piyu-panel .chat-form textarea { min-height: 58px; }
 .piyu-panel .chat-message { max-width: 100%; }
-.piyu-panel-status { flex: 0 0 auto; margin: 0; padding: 8px 16px; border-top: 1px solid var(--line); background: var(--surface); }
+.piyu-panel-status { box-sizing: border-box; width: 100%; flex: 0 0 auto; margin: 0; padding: 8px 16px; border-top: 1px solid var(--line); background: var(--surface); }
 .piyu-limit-note { margin: 8px 0 0; color: var(--muted); font-family: monospace; font-size: 9px; line-height: 1.4; }
 .piyu-companion { right: auto; left: clamp(14px, 2.4vw, 30px); bottom: calc(92px + env(safe-area-inset-bottom)); transform: none !important; transition: none; }
 @media (max-width: 680px) {
