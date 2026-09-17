@@ -49,6 +49,13 @@ function validHistory(history) {
   })).filter((item) => item.parts[0].text);
 }
 
+function fallbackReply(message) {
+  if (/money|price|cost|salary|pay/i.test(message)) {
+    return "I can help with Julio’s portfolio, projects, skills, or automation work. For pricing or collaboration details, please use the contact form.";
+  }
+  return "I can help with Julio’s portfolio, AI projects, workflow automations, and ways to get in touch. Try asking about a specific project or skill.";
+}
+
 module.exports = async function handler(request, response) {
   if (request.method === "OPTIONS") return response.status(204).end();
   if (request.method !== "POST") return json({ error: "Method not allowed" }, response, 405);
@@ -96,12 +103,12 @@ module.exports = async function handler(request, response) {
       if (upstream.status === 429) return json({ error: "Gemini is rate-limiting this request. Wait a moment, then try again." }, response, 429);
       if (upstream.status === 401 || upstream.status === 403) return json({ error: "Piyu cannot reach Gemini with the current API key. Check GEMINI_API_KEY in Vercel." }, response, 502);
       if (upstream.status === 404) return json({ error: `The configured Gemini model (${MODEL}) is unavailable. Update GEMINI_MODEL in Vercel.` }, response, 502);
-      return json({ error: "Gemini is temporarily unavailable. Try again shortly." }, response, 502);
+      return json({ reply: fallbackReply(message), model: "piyu-fallback" }, response);
     }
     const answer = result?.candidates?.[0]?.content?.parts?.map((part) => part.text || "").join("").trim();
     if (!answer) return json({ error: "Piyu could not form a reply to that yet." }, response, 502);
     return json({ reply: answer, model: MODEL }, response);
   } catch (_) {
-    return json({ error: "Piyu is temporarily unavailable. Try again shortly." }, response, 503);
+    return json({ reply: fallbackReply(message), model: "piyu-fallback" }, response);
   }
 };
