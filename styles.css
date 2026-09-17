@@ -1083,6 +1083,7 @@ body { padding-top: 76px; }
 .project-tech-icons { align-items: center; gap: 8px; }
 .project-tech-icons .tech-icon { width: 28px; height: 28px; display: grid; place-items: center; padding: 0; border: 1px solid currentColor; border-radius: 7px; color: var(--blue); font-family: var(--body); font-size: 8px; font-weight: 800; letter-spacing: -.04em; }
 .project-tech-icons .tech-icon svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+.project-tech-icons .tech-icon img { width: 18px; height: 18px; display: block; object-fit: contain; }
 .project-tech-icons .tech-php { color: #9b8cff; }
 .project-tech-icons .tech-js { color: #f4c84b; }
 .project-tech-icons .tech-css { color: #63a9ff; }
