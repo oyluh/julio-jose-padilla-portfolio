@@ -411,6 +411,7 @@ body::selection { background: var(--lime); color: var(--text); }
 .piyu-panel.open { visibility: visible; opacity: 1; transform: none; }
 .piyu-panel .chat-panel-head { border-bottom-color: var(--text); }
 .piyu-panel .chat-notice { background: var(--lime); color: var(--text); }
+.piyu-panel .chat-notice { color: #101820; font-weight: 600; }
 .piyu-panel .chat-messages { flex: 1; }
 .piyu-panel .chat-form { background: var(--bg); }
 .piyu-panel .chat-form input, .piyu-panel .chat-form textarea { background: var(--surface); }
@@ -816,6 +817,7 @@ html { overflow-x: clip; }
   .piyu-panel .chat-messages { min-height: 180px; }
   .piyu-panel .chat-form { padding: 14px 12px max(12px, env(safe-area-inset-bottom)); }
   .piyu-companion { left: 12px; bottom: 78px; }
+  .hero-actions .button-primary { width: 100%; max-width: 240px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .utility-button, .utility-top { transition: none; }
@@ -928,6 +930,7 @@ body { padding-top: 76px; }
 /* Keep the primary hero CTA visibly interactive in every theme. */
 .hero-actions .button-primary { cursor: pointer; }
 .hero-actions .button-primary:hover, .hero-actions .button-primary:focus-visible { border-color: var(--text); background: var(--lime); color: var(--text); transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--text); }
+.hero-actions .button-primary { min-width: 142px; min-height: 48px; touch-action: manipulation; }
 
 .contact-card { padding: 42px; border: 1px solid var(--line-strong); border-radius: 22px; background: linear-gradient(125deg, #0e1c30 0%, #121b2a 54%, #1a1017 100%); box-shadow: 0 24px 60px rgba(15,24,42,.2); }
 .contact-card::before { inset: 18px; border-color: rgba(194,217,255,.18); border-radius: 15px; background-image: linear-gradient(rgba(194,217,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(194,217,255,.08) 1px, transparent 1px); background-size: 28px 28px; }
