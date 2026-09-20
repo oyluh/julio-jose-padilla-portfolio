@@ -937,6 +937,14 @@ body { padding-top: 76px; }
 .hero-actions .button-primary:hover, .hero-actions .button-primary:focus-visible { border-color: var(--text); background: var(--lime); color: var(--text); transform: translate(-3px, -3px); box-shadow: 5px 5px 0 var(--text); }
 .hero-actions .button-primary { min-width: 142px; min-height: 48px; touch-action: manipulation; }
 
+/* Keep the narrative order aligned with the navigation without duplicating sections. */
+main { display: flex; flex-direction: column; }
+.stack-section { order: 4; }
+.experience-section { order: 5; }
+.chat-section { order: 6; }
+.games-section { order: 7; }
+.contact-section { order: 8; }
+
 .contact-card { padding: 42px; border: 1px solid var(--line-strong); border-radius: 22px; background: linear-gradient(125deg, #0e1c30 0%, #121b2a 54%, #1a1017 100%); box-shadow: 0 24px 60px rgba(15,24,42,.2); }
 .contact-card::before { inset: 18px; border-color: rgba(194,217,255,.18); border-radius: 15px; background-image: linear-gradient(rgba(194,217,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(194,217,255,.08) 1px, transparent 1px); background-size: 28px 28px; }
 .contact-section { scroll-margin-top: 96px; }

@@ -548,3 +548,16 @@ document.querySelectorAll(".game-preview iframe").forEach((frame) => {
   frame.addEventListener("load", () => { loaded = true; window.clearTimeout(timer); }, { once: true });
   frame.addEventListener("error", () => { fallback.hidden = false; }, { once: true });
 });
+
+// Keep section numbering consistent with the navigation order.
+const sectionNumbers = [
+  [".stack-section .stack-head .eyebrow", "04 / Stack"],
+  [".experience-section .stack-head .eyebrow", "05 / Experience"],
+  [".chat-inline-intro .eyebrow", "06 / Public room"],
+  [".games-section .eyebrow", "07 / Side quests"],
+  [".contact-kicker", "08 / Contact Me"],
+];
+sectionNumbers.forEach(([selector, label]) => {
+  const element = document.querySelector(selector);
+  if (element) element.textContent = label;
+});
