@@ -214,6 +214,11 @@ body::selection { background: var(--lime); color: var(--text); }
 .chat-status.success { color: var(--blue-strong); }
 
 @media (max-width: 680px) {
+  .hero-actions { width: 100%; flex-direction: column; align-items: stretch; gap: 14px; }
+  .hero-actions .button { width: 100%; max-width: 360px; min-height: 52px; }
+  .hero-actions .button-primary { max-width: 360px; }
+  .hero-actions .button-quiet { justify-content: flex-start; padding-inline: 0; border-color: transparent; }
+  .hero-meta { max-width: 100%; overflow-wrap: anywhere; }
   .site-nav { background: var(--bg); border-bottom-color: var(--text); }
   .site-nav a { border-bottom-color: var(--line); }
   .site-nav .nav-contact { border-color: var(--text); }
