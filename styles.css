@@ -1027,6 +1027,13 @@ main { display: flex; flex-direction: column; }
 }
 
 [data-theme="dark"] .capabilities-section { background: #101722; }
+
+/* Keep the hero CTAs above decorative geometry and reliably tappable. */
+.hero-grid { position: relative; z-index: 1; }
+.hero::before, .hero::after { pointer-events: none; }
+.hero-actions { position: relative; z-index: 2; }
+.hero-actions .button { position: relative; z-index: 2; touch-action: manipulation; }
+.hero-actions .button-quiet { cursor: pointer; }
 [data-theme="dark"] .capability-card { background: #151d2a; }
 [data-theme="dark"] .capability-card:hover, [data-theme="dark"] .capability-card:focus-within { background: #1b2637; }
 [data-theme="dark"] .about-section, [data-theme="dark"] .experience-section { background: #0b0d12; }
