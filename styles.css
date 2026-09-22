@@ -1034,6 +1034,23 @@ main { display: flex; flex-direction: column; }
 .hero-actions { position: relative; z-index: 2; }
 .hero-actions .button { position: relative; z-index: 2; touch-action: manipulation; }
 .hero-actions .button-quiet { cursor: pointer; }
+
+@media (max-width: 680px) {
+  .hero-actions { align-items: flex-start; }
+  .hero-actions .button-primary { width: min(100%, 360px); }
+  .hero-actions .button-quiet {
+    width: fit-content;
+    max-width: max-content;
+    min-height: 48px;
+    padding: 12px 0;
+    border-color: transparent !important;
+  }
+  .hero-actions .button-quiet:hover,
+  .hero-actions .button-quiet:focus-visible {
+    border-color: transparent !important;
+    box-shadow: none;
+  }
+}
 [data-theme="dark"] .capability-card { background: #151d2a; }
 [data-theme="dark"] .capability-card:hover, [data-theme="dark"] .capability-card:focus-within { background: #1b2637; }
 [data-theme="dark"] .about-section, [data-theme="dark"] .experience-section { background: #0b0d12; }
